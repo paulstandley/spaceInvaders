@@ -6,11 +6,13 @@
 
 ------------------------------------------------------------
 
-## 1 Project setup **Done**
+## 0 Project intro **Done** 00:00
 
-## 2 Create player
+## 1 Project setup **Done** 01:56
 
-## 3 Move the player
+## 2 Create player 07:20
+
+## 3 Move the player 21:39
 
 ## 4 Create projecttiles
 
