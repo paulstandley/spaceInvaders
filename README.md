@@ -6,7 +6,7 @@
 
 ------------------------------------------------------------
 
-## 1 Project setup
+## 1 Project setup **Done**
 
 ## 2 Create player
 
