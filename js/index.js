@@ -24,4 +24,14 @@ class Player {
         this.height = 100;
     }
 
+    draw() {
+        c.fillStyle = 'red';
+        c.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
 }
+
+const player = new Player();
+player.draw();
+
+console.log(player);
+console.log(Player);
