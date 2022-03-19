@@ -1,6 +1,8 @@
 # spaceInvaders
 
-[YouTube](https://www.youtube.com/watch?v=MCVU0w73uKI&t=23s)
+[Creator](https://www.youtube.com/channel/UC9Yp2yz6-pwhQuPlIDV_mjA)
+
+[Lesson](https://www.youtube.com/watch?v=MCVU0w73uKI&t=23s)
 
 ------------------------------------------------------------
 
