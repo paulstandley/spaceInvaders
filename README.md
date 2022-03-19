@@ -6,11 +6,13 @@
 
 ------------------------------------------------------------
 
+current **19:40**
+
 ## 0 Project intro **Done** 00:00
 
 ## 1 Project setup **Done** 01:56
 
-## 2 Create player 07:20
+## 2 Create player **Done** 07:20
 
 ## 3 Move the player 21:39
 
