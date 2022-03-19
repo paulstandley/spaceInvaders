@@ -41,6 +41,13 @@ class Player {
             );
         }
     }
+
+    update() {
+        if (this.image) {
+            this.draw()
+            this.position.x += this.velocity.x;
+        }
+    }
 }
 
 const player = new Player();
@@ -49,7 +56,7 @@ function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black';
     c.fillRect(0, 0, canvas.width, canvas.height);
-    player.draw();
+    player.update();
 }
 
 animate();
