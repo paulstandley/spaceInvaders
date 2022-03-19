@@ -6,7 +6,7 @@
 
 ------------------------------------------------------------
 
-current **19:40**
+current **37:09**
 
 ## 0 Project intro **Done** 00:00
 
@@ -14,9 +14,9 @@ current **19:40**
 
 ## 2 Create player **Done** 07:20
 
-## 3 Move the player 21:39
+## 3 Move the player  **Done** 21:39
 
-## 4 Create projecttiles
+## 4 Create projecttiles 39:09
 
 ## 5 Create invaders
 
