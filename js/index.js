@@ -87,6 +87,7 @@ class Projectile {
         c.arc(
             this.position.x,
             this.position.y,
+            this.radius,
             0,
             Math.PI * 2
         );
@@ -155,8 +156,20 @@ window.addEventListener('keydown', ( {key} ) => {
         //console.log('right');
         break;
         case ' ':
-        keys.space.pressed = true; 
-        //console.log('space');
+        //keys.space.pressed = true; 
+        console.log('space');
+        projectiles.push(
+            new Projectile({
+                position: {
+                    x: player.position.x,
+                    y: player.position.y
+                },
+                velocity: {
+                    x: 0,
+                    y: -5
+                }
+            })
+        );
         break;
     }
 })
@@ -172,8 +185,8 @@ window.addEventListener('keyup', ( {key} ) => {
         //console.log('right');
         break;
         case ' ':
-        keys.space.pressed = false; 
-        //console.log('space');
+        //keys.space.pressed = false; 
+        console.log('space');
         break;
     }
 })
