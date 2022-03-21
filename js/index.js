@@ -96,7 +96,7 @@ class Projectile {
     }
 
     update() {
-        
+
         this.draw();
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
@@ -104,6 +104,7 @@ class Projectile {
 }
 
 const player = new Player();
+const projectiles = [];
 const keys = {
     a: {
         pressed: false
@@ -122,6 +123,11 @@ function animate() {
     c.fillStyle = 'black';
     c.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
+      
+    projectiles.forEach((projectile) => {
+
+        projectile.update();
+    })
 
     // move player and border restictions
     if (keys.a.pressed && player.position.x >= 0) {
