@@ -18,7 +18,7 @@ current **37:09**
 
 ## 4 Create projecttiles **Done** 39:09
 
-## 5 Create invaders 47:15
+## 5 Create invaders **Done** 47:15
 
 ## 6 Create and move grids of invaders
 

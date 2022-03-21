@@ -121,7 +121,7 @@ class Invader {
         image.src = './img/invader.png';
 
         image.onload = () => {
-            const scale = 1;
+            const scale = 0.038;
             this.image = image;
             this.width = image.width * scale;
             this.height = image.height * scale;
@@ -158,6 +158,7 @@ class Invader {
 
 const player = new Player();
 const projectiles = [];
+const invader = new Invader();
 const keys = {
     a: {
         pressed: false
@@ -175,6 +176,7 @@ function animate() {
     window.requestAnimationFrame(animate);
     c.fillStyle = 'black';
     c.fillRect(0, 0, canvas.width, canvas.height);
+    invader.update();
     player.update();
       
     projectiles.forEach((projectile, index) => {
