@@ -1,8 +1,8 @@
-# spaceInvaders
+# HTML5 Canvas and JavaScript Space Invaders Game 
 
 [Creator](https://www.youtube.com/channel/UC9Yp2yz6-pwhQuPlIDV_mjA)
 
-[Lesson](https://www.youtube.com/watch?v=MCVU0w73uKI&t=23s)
+[Lesson](https://www.youtube.com/watch?v=MCVU0w73uKI&t=2s)
 
 ------------------------------------------------------------
 

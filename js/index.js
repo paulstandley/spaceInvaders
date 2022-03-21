@@ -88,6 +88,11 @@ const keys = {
 
 function animate() {
 
+    window.requestAnimationFrame(animate);
+    c.fillStyle = 'black';
+    c.fillRect(0, 0, canvas.width, canvas.height);
+    player.update();
+    
     // move player and border restictions
     if (keys.a.pressed && player.position.x >= 0) {
         player.velocity.x = - player.speed;
@@ -99,11 +104,6 @@ function animate() {
         player.velocity.x = 0;
         player.rotation = 0;
     }
-
-    window.requestAnimationFrame(animate);
-    c.fillStyle = 'black';
-    c.fillRect(0, 0, canvas.width, canvas.height);
-    player.update();
 }
 
 animate();
