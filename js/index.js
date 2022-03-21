@@ -100,7 +100,7 @@ class Projectile {
 
         this.draw();
         this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
+        this.position.y += this.velocity.y; 
     }
 }
 
@@ -125,9 +125,16 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
       
-    projectiles.forEach((projectile) => {
+    projectiles.forEach((projectile, index) => {
 
-        projectile.update();
+        // remove projectiles from array when they left the screen
+        if (projectile.position.y + projectile.radius <= 0) {
+            setTimeout(() => {
+                projectiles.splice(index, 1);
+            },0)
+        } else {
+            projectile.update();
+        }
     })
 
     // move player and border restictions
@@ -157,19 +164,20 @@ window.addEventListener('keydown', ( {key} ) => {
         break;
         case ' ':
         //keys.space.pressed = true; 
-        console.log('space');
+        //console.log('space');
         projectiles.push(
             new Projectile({
                 position: {
-                    x: player.position.x,
+                    x: player.position.x + player.width / 2,
                     y: player.position.y
                 },
                 velocity: {
                     x: 0,
-                    y: -5
+                    y: -10
                 }
             })
         );
+        //console.log(projectiles);
         break;
     }
 })
