@@ -6,7 +6,7 @@
 
 ------------------------------------------------------------
 
-current **37:09**
+current **1:07:33**
 
 ## 0 Project intro **Done** 00:00
 
@@ -20,7 +20,7 @@ current **37:09**
 
 ## 5 Create invaders **Done** 47:15
 
-## 6 Create and move grids of invaders
+## 6 Create and move grids of invaders **Done** 1:07:33
 
 ## 7 Spawn grids at intervals
 
