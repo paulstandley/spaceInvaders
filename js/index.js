@@ -227,12 +227,12 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
       
-    projectiles.forEach((projectile, index) => {
+    projectiles.forEach((projectile, i) => {
 
         // remove projectiles from array when they left the screen
         if (projectile.position.y + projectile.radius <= 0) {
             setTimeout(() => {
-                projectiles.splice(index, 1);
+                projectiles.splice(i, 1);
             },0)
         } else {
             projectile.update();
@@ -242,9 +242,34 @@ function animate() {
     grids.forEach((grid) => {
 
         grid.update();               
-        grid.invaders.forEach((invader) => {
+        grid.invaders.forEach((invader, i) => {
 
             invader.update( {velocity: grid.velocity} );
+
+            projectiles.forEach((projectile, j) => {
+
+                if (
+                    projectile.position.y - projectile.radius <=
+                    invader.position.y + invader.height &&
+                    projectile.position.x + projectile.radius >=
+                    invader.position.x  &&
+                    projectile.position - projectile.radius <=
+                    invader.position.y + projectile.radius >=
+                    invader.position.y
+                ) {
+                    
+                    setTimeout(() => {
+
+                        const invaderFound = grid.invader.find((findinvader) => {
+                            return findinvader === invader;
+                        });
+                        if (invaderFound) {
+                                grid.invaders.splice(i, 1);
+                                projectile.splice(j, 1); 
+                        }
+                    },0);
+                }
+            });
         });
     });
 
