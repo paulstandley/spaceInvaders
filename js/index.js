@@ -32,9 +32,7 @@ class Player {
                 y: canvas.height - this.height - 40
             }
         }
-    }
-
-    
+    } 
 
     draw() {
         //c.fillStyle = 'red';
@@ -80,7 +78,7 @@ class Projectile {
 
         this.position = position;
         this.velocity = velocity;
-        this.radius = 3;
+        this.radius = 4;
     }
 
     draw() {
@@ -121,7 +119,7 @@ class Invader {
         image.src = './img/invader.png';
 
         image.onload = () => {
-            const scale = 0.038;
+            const scale = 1 ;
             this.image = image;
             this.width = image.width * scale;
             this.height = image.height * scale;
@@ -170,8 +168,8 @@ class Grid {
         }
 
         this.invaders = [];
-        const rows = Math.floor(Math.random() * 10 + 5);
-        const cols = Math.floor(Math.random() * 5 + 2);
+        const cols = Math.floor(Math.random() * 10 + 5);
+        const rows = Math.floor(Math.random() * 5 + 2);
         this.width = cols * 30;
 
         for (let x = 0; x < cols; x++) {
@@ -181,8 +179,8 @@ class Grid {
                 this.invaders.push(
                     new Invader( {
                         position: {
-                            x: x * 34,
-                            y: y * 34
+                            x: x * 30,
+                            y: y * 30
                         }
                     } ));
             }
@@ -218,7 +216,7 @@ const keys = {
 }
 
 let frames = 0;
-let randomInterval = Math.floor(Math.random() * 500 +500);
+let randomInterval = Math.floor(Math.random() * 500 + 500);
 //console.log(randomInterval);
 function animate() {
 
@@ -252,7 +250,7 @@ function animate() {
                     projectile.position.y - projectile.radius <=
                     invader.position.y + invader.height &&
                     projectile.position.x + projectile.radius >=
-                    invader.position.x  &&
+                    invader.position.x + invader.width &&
                     projectile.position - projectile.radius <=
                     invader.position.y + projectile.radius >=
                     invader.position.y
@@ -260,12 +258,18 @@ function animate() {
                     
                     setTimeout(() => {
 
-                        const invaderFound = grid.invader.find((findinvader) => {
+                        const invaderFound = grid.invaders.find((findinvader) => {
+
                             return findinvader === invader;
                         });
-                        if (invaderFound) {
+
+                        const projectileFound = grid.invaders.find((findprojectile) => {
+                            return findprojectile === invader;
+                        });
+
+                        if (invaderFound && projectileFound) {
                                 grid.invaders.splice(i, 1);
-                                projectile.splice(j, 1); 
+                                projectiles.splice(j, 1); 
                         }
                     },0);
                 }
