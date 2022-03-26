@@ -24,6 +24,8 @@ current **1:13:42**
 
 ## 7 Spawn grids at intervals  *Done** 1:13:42
 
+## 7a Take into account new grid width
+
 ## 8 Shoot invaders
 
 ## 9 Invaders shoot back
