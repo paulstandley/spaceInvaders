@@ -20,22 +20,22 @@ current **1:13:42**
 
 ## 5 Create invaders **Done** 47:15
 
-## 6 Create and move grids of invaders **Done** 1:07:33
+## 6 Create and move grids of invaders **Done** 51:34
 
-## 7 Spawn grids at intervals  *Done** 1:13:42
+## 7 Spawn grids at intervals  *Done** 1:07:42
 
-## 7a Take into account new grid width
+## 8 Shoot invaders **Done** 1:13:42
 
-## 8 Shoot invaders
+## 9 Take into account new grid width **Done** 1:22:34
 
-## 9 Invaders shoot back
+## 10 Invaders shoot back
 
-## 10 Enemy expolosions
+## 11 Enemy expolosions
 
-## 11 Create background stars
+## 12 Create background stars
 
-## 12 Lose condisions
+## 13 Lose condisions
 
-## 13 Score
+## 14 Score
 
-## 14 Fixed-width canvas
+## 15 Fixed-width canvas
