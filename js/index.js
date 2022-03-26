@@ -3,8 +3,22 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = window.innerWidth - 30;
+canvas.height = window.innerHeight - 30;
+
+const projectiles = [];
+const grids = [];
+const keys = {
+    a: {
+        pressed: false
+    },
+    d: {
+        pressed: false
+    },
+    space: {
+        pressed: false
+    }
+}
 
 class Player {
 
@@ -29,7 +43,7 @@ class Player {
             this.height = image.height * scale;
             this.position = {
                 x: canvas.width / 2 - this.width / 2,
-                y: canvas.height - this.height - 40
+                y: canvas.height - this.height - 20
             }
         }
     } 
@@ -195,29 +209,16 @@ class Grid {
         this.velocity.y = 0;
         if (this.position.x + this.width >= canvas.width || this.position.x <= 0) {
             this.velocity.x = - this.velocity.x;
-            this.velocity.y = 34;
+            this.velocity.y = 30;
         }
     }
 }
 
 const player = new Player();
-const projectiles = [];
-const grids = [];
-const keys = {
-    a: {
-        pressed: false
-    },
-    d: {
-        pressed: false
-    },
-    space: {
-        pressed: false
-    }
-}
-
 let frames = 0;
 let randomInterval = Math.floor(Math.random() * 500 + 500);
 //console.log(randomInterval);
+
 function animate() {
 
     window.requestAnimationFrame(animate);
@@ -250,9 +251,10 @@ function animate() {
                     projectile.position.y - projectile.radius <=
                     invader.position.y + invader.height &&
                     projectile.position.x + projectile.radius >=
+                    invader.position.x &&
+                    projectile.position.x - projectile.radius <=
                     invader.position.x + invader.width &&
-                    projectile.position - projectile.radius <=
-                    invader.position.y + projectile.radius >=
+                    projectile.position.y + projectile.radius >=
                     invader.position.y
                 ) {
                     
@@ -263,11 +265,13 @@ function animate() {
                             return findinvader === invader;
                         });
 
-                        const projectileFound = grid.invaders.find((findprojectile) => {
-                            return findprojectile === invader;
+                        const projectileFound = projectiles.find((findprojectile) => {
+                            return findprojectile === projectile;
                         });
-
+                        // remove invader and projectile
                         if (invaderFound && projectileFound) {
+                            console.log(grid);
+                            console.log(projectiles);
                                 grid.invaders.splice(i, 1);
                                 projectiles.splice(j, 1); 
                         }
@@ -322,11 +326,10 @@ window.addEventListener('keydown', ( {key} ) => {
                 },
                 velocity: {
                     x: 0,
-                    y: -10
+                    y: -7
                 }
             })
         );
-        //console.log(projectiles);
         break;
     }
 })
