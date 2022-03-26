@@ -28,9 +28,9 @@ current **1:13:42**
 
 ## 9 Take into account new grid width **Done** 1:22:34
 
-## 10 Invaders shoot back
+## 10 Invaders shoot back **Done** 1:26:32
 
-## 11 Enemy expolosions
+## 11 Enemy expolosions 1:36:47
 
 ## 12 Create background stars
 

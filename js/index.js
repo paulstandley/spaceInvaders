@@ -258,7 +258,6 @@ class Grid {
 const player = new Player();
 let frames = 0;
 let randomInterval = Math.floor(Math.random() * 500 + 500);
-//console.log(randomInterval);
 
 function animate() {
 
@@ -267,8 +266,22 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
 
-    invaderProjectiles.forEach((invaderProjectile) => {
-        invaderProjectile.update();
+    invaderProjectiles.forEach((invaderProjectile, i) => {
+        
+        // remove projectiles from array when they left the screen
+        if (invaderProjectile.position.y + invaderProjectile.height >= canvas.height) {
+            setTimeout(() => {
+                
+                invaderProjectiles.splice(i, 1);
+            },0)
+        } else {
+            invaderProjectile.update();
+        }
+        if (invaderProjectile.position.y + invaderProjectile.height >= player.position.y  &&
+             invaderProjectile.position.x + invaderProjectile.width >= player.position.x &&
+             invaderProjectile.position.x <= player.position.x + player.width) {
+            console.log('you lose');
+        }
     });
       
     projectiles.forEach((projectile, i) => {
