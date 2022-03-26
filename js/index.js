@@ -1,4 +1,4 @@
-// Spave Invaders
+// Space Invaders
 
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
@@ -6,6 +6,7 @@ const c = canvas.getContext('2d');
 canvas.width = window.innerWidth - 30;
 canvas.height = window.innerHeight - 30;
 
+const invaderProjectiles = [];
 const projectiles = [];
 const grids = [];
 const keys = {
@@ -118,6 +119,31 @@ class Projectile {
     }
 }
 
+class InvaderProjectile {
+
+    constructor( {position, velocity} ) {
+
+        this.position = position;
+        this.velocity = velocity;
+        this.width = 3;
+        this.height = 10;
+    }
+
+    draw() {
+
+        c.fillStyle = 'white';
+        c.fillRect(this.position.x, this.position.y, this.width, this.height);
+
+    }
+
+    update() {
+
+        this.draw();
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y; 
+    }
+}
+
 class Invader {
 
     constructor( {position} ) {
@@ -161,11 +187,26 @@ class Invader {
 
     update( {velocity} ) {
         if (this.image) {
-            this.draw()
+            this.draw();
             this.position.x += velocity.x;
             this.position.y += velocity.y;
         }
     }
+
+
+    shoot(invaderProjectiles) {
+
+        invaderProjectiles.push(new InvaderProjectile( {
+            position: {
+                x: this.position.x + this.width / 2,
+                y: this.position.y + this.height
+            },
+            velocity: {
+                x: 0,
+                y: 5
+            }
+        } ));
+    };
 }
 
 class Grid {
@@ -225,6 +266,10 @@ function animate() {
     c.fillStyle = 'black';
     c.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
+
+    invaderProjectiles.forEach((invaderProjectile) => {
+        invaderProjectile.update();
+    });
       
     projectiles.forEach((projectile, i) => {
 
@@ -240,7 +285,14 @@ function animate() {
 
     grids.forEach((grid, gridIndex) => {
 
-        grid.update();               
+        grid.update();
+        
+        if (frames % 100 === 0 && grid.invaders.length > 0) {
+            grid.invaders[
+                Math.floor(Math.random() * grid.invaders.length)
+            ].shoot(invaderProjectiles);
+        }
+
         grid.invaders.forEach((invader, i) => {
 
             invader.update( {velocity: grid.velocity} );
@@ -283,7 +335,7 @@ function animate() {
 
                                 grid.position.x = firstInvader.position.x;
                             }else{
-                                grids.splice(gridIndex, 1);
+                                grids.splice(gridIndex, -1);
                             }
                         }
                     },0);
