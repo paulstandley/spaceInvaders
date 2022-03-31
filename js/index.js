@@ -362,19 +362,6 @@ function animate() {
                     projectile.position.y + projectile.radius >=
                     invader.position.y
                 ) {
-                    
-                    prarticles.push(new Prarticle({
-                        position: {
-                            x: invader.position.x + invader.width / 2,
-                            y: invader.position.y + invader.height /2 
-                        },
-                        velocity: {
-                            x: 2,
-                            y: 2
-                        },
-                        radius: 10,
-                        color: 'yellow'
-                    }));
 
                     setTimeout(() => {
 
@@ -388,8 +375,22 @@ function animate() {
                         });
                         // remove invader and projectile
                         if (invaderFound && projectileFound) {
-                            console.log(grid);
-                            console.log(projectiles);
+                            for (let i = 0; i < 15; i++) {
+                                prarticles.push(new Prarticle({
+                                    position: {
+                                        x: invader.position.x + invader.width / 2,
+                                        y: invader.position.y + invader.height /2 
+                                    },
+                                    velocity: {
+                                        x: (Math.random()- 0.5) * 2,
+                                        y: (Math.random() - 0.5) * 2
+                                    },
+                                    radius: Math.random() * 3,
+                                    color: 'lightgreen'
+                                })); 
+                            }
+                            //console.log(grid);
+                            //console.log(projectiles);
                             grid.invaders.splice(i, 1);
                             projectiles.splice(j, 1); 
 
