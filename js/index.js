@@ -8,6 +8,7 @@ canvas.height = window.innerHeight - 30;
 
 const invaderProjectiles = [];
 const projectiles = [];
+const prarticles = [];
 const grids = [];
 const keys = {
     a: {
@@ -107,6 +108,39 @@ class Projectile {
             Math.PI * 2
         );
         c.fillStyle = 'red';
+        c.fill();
+        c.closePath();
+    }
+
+    update() {
+
+        this.draw();
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y; 
+    }
+}
+
+class Prarticle {
+
+    constructor( {position, velocity, radius, color} ) {
+
+        this.position = position;
+        this.velocity = velocity;
+        this.radius = radius;
+        this.color = color;
+    }
+
+    draw() {
+
+        c.beginPath();
+        c.arc(
+            this.position.x,
+            this.position.y,
+            this.radius,
+            0,
+            Math.PI * 2
+        );
+        c.fillStyle = this.color;
         c.fill();
         c.closePath();
     }
@@ -266,6 +300,10 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
 
+    prarticles.forEach((prarticle) => {
+        prarticle.update();
+    });
+
     invaderProjectiles.forEach((invaderProjectile, i) => {
         
         // remove projectiles from array when they left the screen
@@ -306,6 +344,8 @@ function animate() {
             ].shoot(invaderProjectiles);
         }
 
+        // projectile hits enemy
+
         grid.invaders.forEach((invader, i) => {
 
             invader.update( {velocity: grid.velocity} );
@@ -323,6 +363,19 @@ function animate() {
                     invader.position.y
                 ) {
                     
+                    prarticles.push(new Prarticle({
+                        position: {
+                            x: invader.position.x + invader.width / 2,
+                            y: invader.position.y + invader.height /2 
+                        },
+                        velocity: {
+                            x: 2,
+                            y: 2
+                        },
+                        radius: 10,
+                        color: 'yellow'
+                    }));
+
                     setTimeout(() => {
 
                         const invaderFound = grid.invaders.find((findinvader) => {
