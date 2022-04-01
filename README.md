@@ -34,6 +34,6 @@
 
 ## 13 Lose condisions **DONE** 1:54:20
 
-## 14 Score
+## 14 Score **DONE** 2:02:36
 
 ## 15 Fixed-width canvas

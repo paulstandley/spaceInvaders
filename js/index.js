@@ -1,10 +1,13 @@
 // Space Invaders
 
+const scoreEl = document.querySelector('#scoreEl');
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
-canvas.width = window.innerWidth - 30;
-canvas.height = window.innerHeight - 30;
+console.log(scoreEl);
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 const invaderProjectiles = [];
 const projectiles = [];
@@ -304,6 +307,7 @@ let game = {
     over: false,
     active: true
 }
+let score = 0;
 
 // make stars
 for (let i = 0; i < 100; i++) {
@@ -462,6 +466,9 @@ function animate() {
                         });
                         // remove invader and projectile
                         if (invaderFound && projectileFound) {
+                            score += 100;
+                            console.log(score);
+                            scoreEl.innerHTML = score;
                             createParticles( {
                                 object: invader,
                                 fades: true
