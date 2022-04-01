@@ -28,11 +28,11 @@
 
 ## 10 Invaders shoot back **Done** 1:26:32
 
-## 11 Enemy expolosions 1:36:47
+## 11 Enemy expolosions **DONE** 1:36:47
 
-## 12 Create background stars
+## 12 Create background stars **DONE** 1:49:05
 
-## 13 Lose condisions
+## 13 Lose condisions **DONE** 1:54:20
 
 ## 14 Score
 
