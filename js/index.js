@@ -6,8 +6,8 @@ const c = canvas.getContext('2d');
 
 console.log(scoreEl);
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = window.innerWidth -20;
+canvas.height = window.innerHeight -20;
 
 const invaderProjectiles = [];
 const projectiles = [];
@@ -391,6 +391,7 @@ function animate() {
              invaderProjectile.position.x + invaderProjectile.width >= player.position.x &&
              invaderProjectile.position.x <= player.position.x + player.width) {
 
+                console.log('you lose');
                 setTimeout(() => {
                 
                     invaderProjectiles.splice(i, 1);
@@ -409,7 +410,6 @@ function animate() {
                     color: 'red',
                     fades: true
                 } );
-            console.log('you lose');
         }
     });
       
