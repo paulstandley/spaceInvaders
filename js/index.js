@@ -8,7 +8,7 @@ canvas.height = window.innerHeight - 30;
 
 const invaderProjectiles = [];
 const projectiles = [];
-const prarticles = [];
+const particles = [];
 const grids = [];
 const keys = {
     a: {
@@ -120,7 +120,7 @@ class Projectile {
     }
 }
 
-class Prarticle {
+class Particle {
 
     constructor( {position, velocity, radius, color} ) {
 
@@ -128,10 +128,13 @@ class Prarticle {
         this.velocity = velocity;
         this.radius = radius;
         this.color = color;
+        this.opacity = 1
     }
 
     draw() {
 
+        c.save();
+        c.globalAlpha = this.opacity
         c.beginPath();
         c.arc(
             this.position.x,
@@ -143,6 +146,7 @@ class Prarticle {
         c.fillStyle = this.color;
         c.fill();
         c.closePath();
+        c.restore();
     }
 
     update() {
@@ -150,6 +154,7 @@ class Prarticle {
         this.draw();
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y; 
+        this.opacity -= 0.01;
     }
 }
 
@@ -300,9 +305,17 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height);
     player.update();
 
-    prarticles.forEach((prarticle) => {
-        prarticle.update();
+    particles.forEach((particle, i) => {
+        if (particle.opacity <= 0) {
+            setTimeout(() => {
+                particles.splice(i, 1);
+            }, 0);
+        } else {
+            particle.update();
+        }
     });
+
+    //console.log(particles)
 
     invaderProjectiles.forEach((invaderProjectile, i) => {
         
@@ -376,7 +389,7 @@ function animate() {
                         // remove invader and projectile
                         if (invaderFound && projectileFound) {
                             for (let i = 0; i < 15; i++) {
-                                prarticles.push(new Prarticle({
+                                particles.push(new Particle({
                                     position: {
                                         x: invader.position.x + invader.width / 2,
                                         y: invader.position.y + invader.height /2 
