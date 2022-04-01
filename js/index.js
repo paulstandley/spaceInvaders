@@ -32,8 +32,8 @@ class Player {
         }
 
         this.speed = 10;
-
         this.rotation = 0;
+        this.opacity = 1;
 
         const image = new Image();
         image.src = './img/spaceship.png';
@@ -56,13 +56,12 @@ class Player {
         
         // take snapshot of canvas
         c.save();
-
+        c.globalAlpha = this.opacity;
         // move rotation to the center off the ship 
         c.translate(
             player.position.x + player.width /2, player.position.y + player.height / 2);
 
         c.rotate(this.rotation);
-
         c.translate(
             - player.position.x - player.width /2, 
             - player.position.y - player.height / 2);
@@ -77,7 +76,7 @@ class Player {
             );
         }
 
-        c.restore()
+        c.restore();
     }
 
     update() {
@@ -301,7 +300,12 @@ class Grid {
 const player = new Player();
 let frames = 0;
 let randomInterval = Math.floor(Math.random() * 500 + 500);
+let game = {
+    over: false,
+    active: true
+}
 
+// make stars
 for (let i = 0; i < 100; i++) {
     particles.push(new Particle({
         position: {
@@ -317,6 +321,7 @@ for (let i = 0; i < 100; i++) {
     }));
 }
 
+// make explosions
 function createParticles( {object, color, fades} ) {
 
     for (let i = 0; i < 15; i++) {
@@ -338,6 +343,9 @@ function createParticles( {object, color, fades} ) {
 
 function animate() {
 
+    if (!game.active) {
+        return;
+    }
     window.requestAnimationFrame(animate);
     c.fillStyle = 'black';
     c.fillRect(0, 0, canvas.width, canvas.height);
@@ -378,10 +386,19 @@ function animate() {
         if (invaderProjectile.position.y + invaderProjectile.height >= player.position.y  &&
              invaderProjectile.position.x + invaderProjectile.width >= player.position.x &&
              invaderProjectile.position.x <= player.position.x + player.width) {
+
                 setTimeout(() => {
                 
                     invaderProjectiles.splice(i, 1);
+                    player.opacity = 0;
+                    game.over = true;
                 }, 0);
+
+                setTimeout(() => {
+                
+                    game.active = false;
+                }, 2000);
+
                 createParticles( {
 
                     object: player,
@@ -496,6 +513,10 @@ function animate() {
 animate();
 
 window.addEventListener('keydown', ( {key} ) => {
+
+    if (game.over) {
+        return;
+    }
     switch (key) {
         case 'a':  
         keys.a.pressed = true;
